@@ -21,15 +21,15 @@ echo "-------------------------------------"
 
 usernamesudo="webexpertosudo"
 passsudo="webexpsudo"
-if id "$usernamesudo" &> /dev/null; then
-	echo "El usuario $usernamesudo ya fue creado"
-else
+#if id "$usernamesudo" &> /dev/null; then
+#	echo "El usuario $usernamesudo ya fue creado"
+#else
 	adduser --gecos "" --disabled-password $usernamesudo
 	echo "$usernamesudo:$passsudo" | chpasswd
 	usermod -aG sudo webexpertosudo
 	echo "Usuario sudo $usernamesudo creado"
 	echo "Contraseña de usuario sudo: $passsudo    (recuerde  cambiarla por seguridad)"
-fi
+#fi
 echo "-------------------------------------"
 
 
@@ -37,15 +37,15 @@ echo "-------------------------------------"
 
 usernamessh="webexpertossh"
 passssh="webexpssh"
-if id "$usernamessh" &> /dev/null; then
-	echo "El usuario $usernamessh ya fue creado"
-else
+#if id "$usernamessh" &> /dev/null; then
+#	echo "El usuario $usernamessh ya fue creado"
+#else
 	adduser --gecos "" --disabled-password $usernamessh
 	echo "$usernamessh:$passssh" | chpasswd
 	echo "AllowUsers $usernamessh" >> /etc/ssh/sshd_config
 	echo "Usuario ssh $usernamessh creado"
 	echo "Contraseña de usuario ssh: $passssh    (recuerde cambiarla por seguridad)"
-fi
+#fi
 echo "-------------------------------------"
 
 
@@ -56,9 +56,9 @@ echo "-------------------------------------"
 
 # Validar si docker está instalado sino instalarlo
 
-if command -v docker &> /dev/null; then
-	echo "Docker se encuentra instalado"
-else
+#if command -v docker &> /dev/null; then
+#	echo "Docker se encuentra instalado"
+#else
 	sudo apt-get update
 	sudo apt-get install ca-certificates curl
 	sudo install -m 0755 -d /etc/apt/keyrings
@@ -74,21 +74,21 @@ else
 	else
 		echo "Error en la instalacion de Docker"
 	fi
-fi
+#fi
 echo "-------------------------------------"
 
 # Validar si docker-compose está instalado sino instalarlo
 
-if command -v docker-compose &> /dev/null; then
-	echo "Docker-compose se encuentra instalado en el sistema"
-else
+#if command -v docker-compose &> /dev/null; then
+#	echo "Docker-compose se encuentra instalado en el sistema"
+#else
 	apt-get install docker-compose-plugin
 	if command -v docker-compose &> /dev/null; then
 		echo "Docker-compose instalado correctamente"
 	else
 		echo "Error en la instalacion de docker-compose"
 	fi
-fi
+#fi
 
 echo "-------------------------------------"
 
@@ -103,22 +103,22 @@ echo "-------------------------------------"
 # Instalar mc
 
 apt install -y mc
-if command -v mc &> /dev/null; then
-	echo "Midnight commander instalado correctamente"
-else
-	echo "Error de instalacion de midnight commander"
-fi
+#if command -v mc &> /dev/null; then
+#	echo "Midnight commander instalado correctamente"
+#else
+#	echo "Error de instalacion de midnight commander"
+#fi
 
 echo "-------------------------------------"
 
 # Instalar vim
 
 apt-get install -y vim
-if command -v vim &> /dev/null; then
-	echo "Vim instalado correctamente"
-else
-	echo "Error de instalacion de vim"
-fi
+#if command -v vim &> /dev/null; then
+#	echo "Vim instalado correctamente"
+#else
+#	echo "Error de instalacion de vim"
+#fi
 
 echo "-------------------------------------"
 
@@ -126,11 +126,11 @@ echo "-------------------------------------"
 
 apt install -y net-tools
 
-if command -v ifconfig &> /dev/null; then
-	echo "Net-tools instalado correctamente"
-else
-	echo "Error de instalacion de net-tools"
-fi
+#if command -v ifconfig &> /dev/null; then
+#	echo "Net-tools instalado correctamente"
+#else
+#	echo "Error de instalacion de net-tools"
+#fi
 
 echo "-------------------------------------"
 
@@ -139,14 +139,14 @@ echo "-------------------------------------"
 
 usernamenginx="nginx"
 passnginx="webexpnginx"
-if id "$usernamenginx" &> /dev/null; then
-	echo "El usuario $usernamenginx ya fue creado"
-else
+#if id "$usernamenginx" &> /dev/null; then
+#	echo "El usuario $usernamenginx ya fue creado"
+#else
 	adduser --gecos "" --disabled-password $usernamenginx
 	echo "$usernamenginx:$passnginx" | chpasswd
 	echo "Usuario ssh $usernamenginx creado"
 	echo "Contraseña de usuario ssh: $passnginx    (recuerde cambiarla por seguridad)"
-fi
+#fi
 usermod -aG docker nginx
 
 echo "-------------------------------------"
