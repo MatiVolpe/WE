@@ -1,8 +1,8 @@
-# !/bin/bash
+#!/bin/bash
 
 # Configurar la zona horaria en Argentina
 
-timedatectl set-timezone America/Argentina/Buenos_Aires
+sudo timedatectl set-timezone America/Argentina/Buenos_Aires
 
 echo "Cambio de zona horaria: "
 timedatectl
@@ -10,7 +10,7 @@ echo "-------------------------------------"
 
 # Cambiar nombre del host
 
-hostnamectl set-hostname bootcampwebexperto
+sudo hostnamectl set-hostname bootcampwebexperto
 
 echo "Nombre del host: "
 hostnamectl
@@ -24,9 +24,9 @@ passsudo="webexpsudo"
 #if id "$usernamesudo" &> /dev/null; then
 #	echo "El usuario $usernamesudo ya fue creado"
 #else
-adduser --gecos "" --disabled-password $usernamesudo
-echo "$usernamesudo:$passsudo" | chpasswd
-usermod -aG sudo webexpertosudo
+sudo adduser --gecos "" --disabled-password $usernamesudo
+echo "$usernamesudo:$passsudo" | sudo chpasswd
+sudo usermod -aG sudo webexpertosudo
 echo "Usuario sudo $usernamesudo creado"
 echo "Contraseña de usuario sudo: $passsudo    (recuerde  cambiarla por seguridad)"
 #fi
@@ -40,9 +40,9 @@ passssh="webexpssh"
 #if id "$usernamessh" &> /dev/null; then
 #	echo "El usuario $usernamessh ya fue creado"
 #else
-adduser --gecos "" --disabled-password $usernamessh
-echo "$usernamessh:$passssh" | chpasswd
-echo "AllowUsers $usernamessh" >> /etc/ssh/sshd_config
+sudo adduser --gecos "" --disabled-password $usernamessh
+echo "$usernamessh:$passssh" | sudo chpasswd
+echo "AllowUsers $usernamessh" | sudo tee -a /etc/ssh/sshd_config
 echo "Usuario ssh $usernamessh creado"
 echo "Contraseña de usuario ssh: $passssh    (recuerde cambiarla por seguridad)"
 #fi
@@ -51,7 +51,7 @@ echo "-------------------------------------"
 
 # Actualizar las dependencias
 
-apt update && apt upgrade -y
+sudo apt update && sudo apt upgrade -y
 echo "-------------------------------------"
 
 # Validar si docker está instalado sino instalarlo
@@ -60,7 +60,7 @@ echo "-------------------------------------"
 #	echo "Docker se encuentra instalado"
 #else
 sudo apt-get update
-sudo apt-get install ca-certificates curl
+sudo apt-get install -y ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -82,7 +82,7 @@ echo "-------------------------------------"
 #if command -v docker-compose &> /dev/null; then
 #	echo "Docker-compose se encuentra instalado en el sistema"
 #else
-apt-get install docker-compose-plugin
+sudo apt-get install -y docker-compose-plugin
 if command -v docker-compose &> /dev/null; then
 	echo "Docker-compose instalado correctamente"
 else
@@ -94,15 +94,15 @@ echo "-------------------------------------"
 
 # Crear grupo de Docker e iniciar el servicio
 
-groupadd docker
-systemctl start docker
-systemctl enable docker
+sudo groupadd docker
+sudo systemctl start docker
+sudo systemctl enable docker
 
 echo "-------------------------------------"
 
 # Instalar mc
 
-apt install -y mc
+sudo apt install -y mc
 #if command -v mc &> /dev/null; then
 #	echo "Midnight commander instalado correctamente"
 #else
@@ -113,7 +113,7 @@ echo "-------------------------------------"
 
 # Instalar vim
 
-apt-get install -y vim
+sudo apt-get install -y vim
 #if command -v vim &> /dev/null; then
 #	echo "Vim instalado correctamente"
 #else
@@ -124,7 +124,7 @@ echo "-------------------------------------"
 
 # Instalar net-tools
 
-apt install -y net-tools
+sudo apt install -y net-tools
 
 #if command -v ifconfig &> /dev/null; then
 #	echo "Net-tools instalado correctamente"
@@ -142,11 +142,11 @@ passnginx="webexpnginx"
 #if id "$usernamenginx" &> /dev/null; then
 #	echo "El usuario $usernamenginx ya fue creado"
 #else
-adduser --gecos "" --disabled-password $usernamenginx
-echo "$usernamenginx:$passnginx" | chpasswd
+sudo adduser --gecos "" --disabled-password $usernamenginx
+echo "$usernamenginx:$passnginx" | sudo chpasswd
 echo "Usuario ssh $usernamenginx creado"
 echo "Contraseña de usuario ssh: $passnginx    (recuerde cambiarla por seguridad)"
 #fi
-usermod -aG docker nginx
+sudo usermod -aG docker nginx
 
 echo "-------------------------------------"
