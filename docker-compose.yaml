@@ -13,7 +13,8 @@ services:
       - vhostd:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - acme:/etc/acme.sh
-
+    labels:
+      - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
   letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     restart: always
@@ -28,13 +29,14 @@ services:
   www:
     image: nginx
     restart: always
-    ports:
+    expose:
       - "80"
     volumes:
       - /root/WE/www:/usr/share/nginx/html
     environment:
-      - VIRTUAL_HOST=localhost
+      - VIRTUAL_HOST=164.92.110.73
       - LETSENCRYPT_HOST=164.92.110.73
+      - LETSENCRYPT_EMAIL=mati.clc.volpe@gmail.com
     depends_on:
       - nginx-proxy
       - letsencrypt
