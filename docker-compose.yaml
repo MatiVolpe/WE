@@ -31,7 +31,7 @@ services:
     ports:
       - "80"
     volumes:
-      - /home/mativolpe/1/www:/usr/share/nginx/html
+      - /root/WE/www:/usr/share/nginx/html
     environment:
       - VIRTUAL_HOST=localhost
       - LETSENCRYPT_HOST=164.92.110.73

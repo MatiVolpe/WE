@@ -84,7 +84,7 @@ echo "-------------------------------------"
 #	echo "Docker-compose se encuentra instalado en el sistema"
 #else
 sudo apt install ca-certificates curl gnupg lsb-release
-sudo apt install -y docker-compose-plugin
+sudo apt install -y docker-compose docker-compose-plugin
 if command -v docker-compose &> /dev/null; then
 	echo "Docker-compose instalado correctamente"
 else
