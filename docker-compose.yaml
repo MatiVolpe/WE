@@ -25,6 +25,8 @@ services:
       - vhostd:/etc/nginx/vhost.d
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - acme:/etc/acme.sh
+      - html:/usr/share/nginx/html
+
 
   www:
     image: nginx
@@ -34,8 +36,8 @@ services:
     volumes:
       - /root/WE/www:/usr/share/nginx/html
     environment:
-      - VIRTUAL_HOST=164.92.110.73
-      - LETSENCRYPT_HOST=164.92.110.73
+      - VIRTUAL_HOST=wemati.ddns.net
+      - LETSENCRYPT_HOST=wemati.ddns.net
       - LETSENCRYPT_EMAIL=mati.clc.volpe@gmail.com
     depends_on:
       - nginx-proxy
