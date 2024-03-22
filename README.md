@@ -1,12 +1,9 @@
-# WE
+Trabajo de Cloud
 
-server {
-    listen 443 default_server ssl http2;
-    listen [::]:443 ssl http2;
-    server_name 164.92.110.73;
-    ssl_certificate /etc/nginx/ssl/live/164.92.110.73/fullchain.pem;
-    ssl_certificate_key /etc/nginx/ssl/live/164.92.110.73/privkey.pem;
-    location / {
-    	proxy_pass http://164.92.110.73;
-    }
-}
+Este proyecto tiene como objetivo aplicar los conocimientos adquiridos durante todo el bootcamp mediante la implementación de una máquina virtual hosteada en un servidor de Digital Ocean.
+
+En este repositorio se encuentra:
+
+- Archivo de docker-compose para desplegar las aplicaciones en los contenedores necesarios.
+- Script que se ejecuta en la VM para realizar las diferentes instalaciones y configuraciones pedidas en las consignas del trabajo.
+- Carpeta www donde se encuentran los archivos html, css y js.
