@@ -6,4 +6,4 @@ En este repositorio se encuentra:
 
 - Archivo de docker-compose para desplegar las aplicaciones en los contenedores necesarios.
 - Script que se ejecuta en la VM para realizar las diferentes instalaciones y configuraciones pedidas en las consignas del trabajo.
-- Carpeta www donde se encuentran los archivos html, css y js.
+- Carpeta www donde se encuentran los archivos html, css y js (utilizando una página web sencilla creada en el momento).
